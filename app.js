@@ -17,7 +17,11 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: "*",
+    origin: [
+      "http://localhost:5173",
+      "https://tarasha-demo.onrender.com",
+      "http://127.0.0.1:5173/",
+    ],
     methods: ["GET", "PUT", "POST", "PATCH", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization", "x-csrf-token"],
   })
