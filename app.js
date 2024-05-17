@@ -23,11 +23,7 @@ app.use(cookieParser());
 //   })
 // );
 const corsOptions = {
-  origin: [
-    "http://localhost:5173",
-    "https://tarasha-demo.onrender.com",
-    "http://127.0.0.1:5173",
-  ],
+  origin: true,
   methods: ["GET", "PUT", "POST", "PATCH", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization", "x-csrf-token"],
 };
