@@ -27,11 +27,33 @@ const corsOptions = {
   methods: ["GET", "PUT", "POST", "PATCH", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization", "x-csrf-token"],
 };
+// Middleware to log CORS details
+app.use((req, res, next) => {
+  console.log("CORS check:");
+  console.log("Origin:", req.headers.origin);
+  console.log("Method:", req.method);
+  console.log("Headers:", req.headers);
+  next();
+});
 
 app.use(cors(corsOptions));
 
+// Handle preflight requests
+app.options("*", (req, res) => {
+  res.header("Access-Control-Allow-Origin", req.headers.origin || "*");
+  res.header("Access-Control-Allow-Methods", "GET, PUT, POST, PATCH, DELETE");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Content-Type, Authorization, x-csrf-token"
+  );
+  res.header("Access-Control-Allow-Credentials", "true");
+  res.sendStatus(200);
+});
+
+// app.use(cors(corsOptions));
+
 // Ensure your server handles preflight requests
-app.options("*", cors(corsOptions));
+// app.options("*", cors(corsOptions));
 
 app.use(
   "/api/user",
