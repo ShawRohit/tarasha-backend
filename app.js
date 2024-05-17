@@ -27,14 +27,6 @@ const corsOptions = {
   methods: ["GET", "PUT", "POST", "PATCH", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization", "x-csrf-token"],
 };
-// Middleware to log CORS details
-app.use((req, res, next) => {
-  console.log("CORS check:");
-  console.log("Origin:", req.headers.origin);
-  console.log("Method:", req.method);
-  console.log("Headers:", req.headers);
-  next();
-});
 
 app.use(cors(corsOptions));
 
