@@ -15,13 +15,28 @@ connectDB();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
-app.use(
-  cors({
-    origin: ["https://tarasha-demo.onrender.com", "http://127.0.0.1:5173"],
-    methods: ["GET", "PUT", "POST", "PATCH", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization", "x-csrf-token"],
-  })
-);
+// app.use(
+//   cors({
+//     origin: ["https://tarasha-demo.onrender.com", "http://127.0.0.1:5173"],
+//     methods: ["GET", "PUT", "POST", "PATCH", "DELETE"],
+//     allowedHeaders: ["Content-Type", "Authorization", "x-csrf-token"],
+//   })
+// );
+const corsOptions = {
+  origin: [
+    "http://localhost:5173",
+    "https://tarasha-demo.onrender.com",
+    "http://127.0.0.1:5173",
+  ],
+  methods: ["GET", "PUT", "POST", "PATCH", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization", "x-csrf-token"],
+};
+
+app.use(cors(corsOptions));
+
+// Ensure your server handles preflight requests
+app.options("*", cors(corsOptions));
+
 app.use(
   "/api/user",
   formattedResponse,
