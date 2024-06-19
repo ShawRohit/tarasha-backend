@@ -1,15 +1,15 @@
-const sendMail = require('../../services/emailServices/email');
+const sendMail = require("../../services/emailServices/email");
 
 const SendCallConfirmationUserMail = async (user, paymentdetails) => {
   try {
     const info = sendMail({
       toEmail: user.email,
-      subject: 'Payment Received-Confirmation for Interior Design Service',
+      subject: "Payment Received-Confirmation for Interior Design Service",
       // text: `${emailFrom} shared a file with you.`,
-      html: require('../../services/emailServices/paymentconfirmation')(
+      html: require("../../services/emailServices/paymentconfirmation")(
         user.name,
         paymentdetails,
-        'Call Consultancy Service'
+        "Call Consultancy Service"
       ),
     })
       .then(() => {
@@ -29,13 +29,13 @@ const SendCallConfirmationUserMail = async (user, paymentdetails) => {
 const SendCallConfirmationUserMailtoMe = async (user, paymentdetails) => {
   try {
     const info = sendMail({
-      toEmail: 'tarashainterior@gmail.com',
-      subject: 'Client Payment Confirmation',
+      toEmail: "tarashainteriors2022@gmail.com",
+      subject: "Client Payment Confirmation",
       // text: `${emailFrom} shared a file with you.`,
-      html: require('../../services/emailServices/paymentConfirmationtoMe')(
+      html: require("../../services/emailServices/paymentConfirmationtoMe")(
         user,
         paymentdetails,
-        'Call Consultancy Service'
+        "Call Consultancy Service"
       ),
     })
       .then(() => {
@@ -56,9 +56,9 @@ const SendInquiryConfirmationUserMail = async (user) => {
   try {
     const info = sendMail({
       toEmail: user.email,
-      subject: 'Inquiry Received - Interior Design Services',
+      subject: "Inquiry Received - Interior Design Services",
       // text: `${emailFrom} shared a file with you.`,
-      html: require('../../services/emailServices/enquirymailTemplate')(
+      html: require("../../services/emailServices/enquirymailTemplate")(
         user.name
       ),
     })
@@ -82,10 +82,10 @@ const SendInquiryConfirmationUserMailtoMe = async (
 ) => {
   try {
     const info = sendMail({
-      toEmail: 'tarashainterior@gmail.com',
-      subject: 'Client Inquiry Confirmation',
+      toEmail: "tarashainteriors2022@gmail.com",
+      subject: "Client Inquiry Confirmation",
       // text: `${emailFrom} shared a file with you.`,
-      html: require('../../services/emailServices/InquiryConfirmationtoMe')(
+      html: require("../../services/emailServices/InquiryConfirmationtoMe")(
         user,
         Inquirydata,
         package_info.package_name,
@@ -93,7 +93,7 @@ const SendInquiryConfirmationUserMailtoMe = async (
       ),
     })
       .then(() => {
-        console.log('Hi in mail2');
+        console.log("Hi in mail2");
         return true;
       })
       .catch((err) => {
